@@ -1,5 +1,5 @@
 import postModel from "../models/postModel.js";
-
+import mongoose from "mongoose";
 export const getPosts = async (req, res) => {
   try {
     const posts = await postModel.find();
@@ -10,18 +10,27 @@ export const getPosts = async (req, res) => {
 };
 
 export const createPosts = async (req, res) => {
-  const { title, description, method, price, type, createdAt } = req.body;
+  const { title, type, method, price, place, createdAt } = req.body;
   const postSave = new postModel({
     title,
-    description,
+    type,
     method,
     price,
-    type,
+    place,
     createdAt,
   });
   try {
     await postSave.save();
     res.status(201).json(postSave);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+export const deletePost = async (req, res) => {
+  try {
+    const delPost = await postModel.deleteOne({ _id: req.params.id });
+    res.json(delPost);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }

@@ -1,0 +1,13 @@
+.expenses_container {
+  display: grid;
+  /* grid-template-columns: auto; */
+  grid-template-columns: auto auto auto;
+}
+
+@media only screen and (max-width: 1200px) {
+  .expenses_container {
+    display: grid;
+    /* grid-template-columns: auto; */
+    grid-template-columns: auto auto;
+  }
+}

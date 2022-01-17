@@ -1,0 +1,33 @@
+.form_input_container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0px 30px 0px;
+}
+.form_container {
+  width: 400px;
+  padding: 0px 20px 0px 20px;
+  margin: 8% 0% 10% 35%;
+}
+.addData_button {
+  background-color: white;
+  padding: 7px 15px 7px 15px;
+  font-size: 14px;
+  border-radius: 10px;
+  transition: 300ms;
+}
+.addData_button:hover {
+  background-color: black;
+  color: white;
+  padding: 10px 20px 10px 20px;
+  cursor: pointer;
+}
+
+.form_input {
+  border-radius: 8px;
+  height: 20px;
+  font-size: 14px;
+}
+
+.form_label {
+  padding: 5px 0px 10px 5px;
+}

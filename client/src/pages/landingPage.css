@@ -1,0 +1,27 @@
+.add_button {
+  transition: 300ms;
+  cursor: pointer;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  border: solid 1px black;
+  border-radius: 5px;
+}
+.add_button:hover {
+  background-color: black;
+  color: white;
+  padding: 10px 20px 10px 20px;
+  font: 24px;
+}
+.msg_container {
+  font-weight: inherit;
+}
+@media only screen and (max-width: 1200px) {
+  .landing_page_container {
+    margin-top: 15%;
+  }
+
+  .back_button_container {
+    font-size: 25px;
+    margin-left: 80%;
+  }
+}

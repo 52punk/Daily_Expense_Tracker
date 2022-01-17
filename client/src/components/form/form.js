@@ -1,8 +1,8 @@
 import "./styles.css";
 import { useRef } from "react";
+import axios from "axios";
 
 const Form = (props) => {
-  const url = "http://localhost:5000/posts";
   const type = useRef();
   const place = useRef();
   const method = useRef();
@@ -12,12 +12,30 @@ const Form = (props) => {
   const addDataFormHandler = () => {
     console.log("Data should be posted");
     const formData = new FormData();
-    formData.append("item", item.current.value);
+    formData.append("title", item.current.value);
     formData.append("price", price.current.value);
-    formData.append("type", type.current.value);
+    formData.append("description", type.current.value);
     formData.append("place", place.current.value);
     formData.append("method", method.current.value);
     props.isLoadingHandler(true);
+    axios
+      .post("http://localhost:5000/posts", {
+        title: item.current.value,
+        type: type.current.value,
+        place: place.current.value,
+        method: method.current.value,
+        price: price.current.value,
+      })
+      .then((res) => {
+        console.log(`status code: ${res.status}`);
+        console.log(res);
+        props.isLoadingHandler(false);
+        props.showModal(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    /*
     fetch(url, {
       method: "POST",
       body: formData,
@@ -28,13 +46,15 @@ const Form = (props) => {
       .catch((err) => {
         console.log(err);
       });
+    */
+    props.itemShow(true);
   };
 
   return (
     <div className="form_container">
       <div className="form_input_container">
         <label htmlFor="item_input" className="item_label form_label">
-          Item
+          Title
         </label>
         <input
           ref={item}
@@ -44,7 +64,7 @@ const Form = (props) => {
           placeholder="eg. snacks, fruits etc"
         />
         <label htmlFor="type_input" className="type_label form_label">
-          Type
+          Description
         </label>
         <textarea
           ref={type}
@@ -54,7 +74,7 @@ const Form = (props) => {
           placeholder="eg. food, stationary etc"
         />
         <label htmlFor="method_input" className="method_label form_label">
-          Method
+          Type
         </label>
         <input
           ref={method}
